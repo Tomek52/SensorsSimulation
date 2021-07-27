@@ -1,8 +1,11 @@
 #include <iostream>
 #include <memory>
+#include <thread>
 
 #include "MainNode.hpp"
 #include "Sensor.hpp"
+
+using namespace std::chrono_literals;
 
 int main(int argc, char** argv) {
     if (argv[1] == "--help" or argv[1] == "-h" or argc != 3) {
@@ -24,10 +27,16 @@ int main(int argc, char** argv) {
             sensor.attach(mainNodePtr);
         }
 
-        for (auto& sensor : sensors) {
-            sensor.notify();
+        std::vector<std::thread> sensorThreads;
+        for (const auto& sensor : sensors) {
+            sensorThreads.emplace_back(
+                std::thread(&Sensor::startMakingMeasurements, sensor));
         }
-        mainNode.printBuffer();
+
+        while (1) {
+            mainNode.printBuffer();
+            std::this_thread::sleep_for(2s);
+        }
     }
     return 0;
 }

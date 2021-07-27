@@ -11,7 +11,7 @@ class Sensor : public ISubject {
     int sendData();
 
 public:
+    void startMakingMeasurements();
     void attach(const std::shared_ptr<IObserver>& observer) override;
-    void detach(const std::shared_ptr<IObserver>& observer) override;
     void notify() override;
 };

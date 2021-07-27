@@ -8,7 +8,7 @@ class MainNode : public IObserver {
     CircBuffer circBuffer;
 
 public:
-    explicit MainNode(CircBuffer circBuffer);
-    void update(const int& message) override;
+    explicit MainNode(const CircBuffer& circBuffer);
+    void update(const int message) override;
     void printBuffer();
 };

@@ -3,9 +3,9 @@
 #include <iostream>
 #include <sstream>
 
-MainNode::MainNode(CircBuffer circBuffer) : circBuffer(circBuffer) {}
+MainNode::MainNode(const CircBuffer& circBuffer) : circBuffer(circBuffer) {}
 
-void MainNode::update(const int& message) { circBuffer.writeNewData(message); }
+void MainNode::update(const int message) { circBuffer.writeNewData(message); }
 
 void MainNode::printBuffer() {
     std::ostringstream out;
