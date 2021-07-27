@@ -10,6 +10,8 @@ set(SRC_LIST
     src/MainNode.cpp
     src/Sensor.cpp
     src/CircBuffer.cpp
+    src/RandomMeasGenerator.cpp
+    src/Logger.cpp
 )
 
 include_directories(src)

@@ -3,7 +3,9 @@
 #include <iostream>
 #include <sstream>
 
-MainNode::MainNode(const CircBuffer& circBuffer) : circBuffer(circBuffer) {}
+#include "Logger.hpp"
+
+MainNode::MainNode(CircBuffer& circBuffer) : circBuffer(circBuffer) {}
 
 void MainNode::update(const int message) { circBuffer.writeNewData(message); }
 
@@ -14,5 +16,7 @@ void MainNode::printBuffer() {
         out << b << " ";
     }
     out << "\n";
-    std::cout << out.str();
+    // std::cout << out.str();
+
+    SENSOR_LOG(out.str());
 }

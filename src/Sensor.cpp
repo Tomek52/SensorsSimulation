@@ -1,13 +1,24 @@
+
 #include "Sensor.hpp"
 
-#include <time.h>
-
+#include <iostream>
+#include <sstream>
 #include <thread>
+
+#include "Logger.hpp"
+#include "RandomMeasGenerator.hpp"
+
+Sensor::Sensor(const int& sensorNum) : sensorNumber(sensorNum) {}
 
 int Sensor::sendData() { return data; }
 void Sensor::notify() {
     for (const auto& observer : observersVec) {
         observer->update(data);
+        std::ostringstream out;
+        out << "New measurement of sensor " << sensorNumber << ": " << data
+            << "\n";
+        // std::cout << out.str();
+        SENSOR_LOG(out.str());
     }
 }
 
@@ -16,13 +27,10 @@ void Sensor::attach(const std::shared_ptr<IObserver>& observer) {
 }
 
 void Sensor::startMakingMeasurements() {
+    RandomMeasGenerator measGenerator;
     while (1) {
-        srand(time(NULL));
-        int randomVariable = rand();
-        data = randomVariable % 100;
+        data = measGenerator.getRandomMeas();
         this->notify();
-
-        using namespace std::chrono_literals;
-        std::this_thread::sleep_for(3s);
+        std::this_thread::sleep_for(measGenerator.getRandomTime());
     }
 }

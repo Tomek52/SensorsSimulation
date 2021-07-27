@@ -5,10 +5,11 @@
 #include "IObserver.hpp"
 
 class MainNode : public IObserver {
-    CircBuffer circBuffer;
+    CircBuffer& circBuffer;
+    std::vector<int> newMeasForClients;
 
 public:
-    explicit MainNode(const CircBuffer& circBuffer);
+    explicit MainNode(CircBuffer& circBuffer);
     void update(const int message) override;
     void printBuffer();
 };
