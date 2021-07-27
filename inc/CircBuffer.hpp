@@ -17,4 +17,5 @@ public:
     CircBuffer& operator=(CircBuffer&& other) = default;
     void writeNewData(const int data);
     std::vector<int> readData();
+    void changeBufferSize(const int& size);
 };

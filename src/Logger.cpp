@@ -23,10 +23,9 @@ void Logger::dumpLogs() {
 }
 
 void Logger::operator()(const std::string& s) {
-    std::cout << s;
-    // try {
-    //     logsToDump << s;
-    // } catch (const std::exception& e) {
-    //     std::cerr << e.what() << '\n';
-    // }
+    try {
+        logg(s);
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
 }

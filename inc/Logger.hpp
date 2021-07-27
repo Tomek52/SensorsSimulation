@@ -18,3 +18,4 @@ public:
 };
 
 static Logger SENSOR_LOG("SENSORS.LOG");
+static Logger CLIENT_LOG("CLIENT.LOG");

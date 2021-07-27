@@ -7,6 +7,8 @@
 class MainNode : public IObserver {
     CircBuffer& circBuffer;
     std::vector<int> newMeasForClients;
+    std::vector<int>& newMeasForClientsRef = newMeasForClients;
+    void notifyingClientsAboutNewMeas();
 
 public:
     explicit MainNode(CircBuffer& circBuffer);

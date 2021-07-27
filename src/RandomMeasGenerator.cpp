@@ -8,6 +8,6 @@ RandomMeasGenerator::RandomMeasGenerator() {
 }
 
 std::chrono::seconds RandomMeasGenerator::getRandomTime() const {
-    return std::chrono::seconds(rand() % 10);
+    return std::chrono::seconds(rand() % 16);
 }
 int RandomMeasGenerator::getRandomMeas() const { return rand() % 100; }
